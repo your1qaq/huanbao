@@ -33,16 +33,21 @@ class monster():
         self.moveX()
 
 class rubbish():
-    def __init__(self, px, py,type = 0):
-        self.pic = [pg.image.load("pic/t1.png")]
-        self.rect = [self.pic[type].get_rect()]
-        self.pics = self.pic[type]
-        self.rects = self.rect[type]
-        self.type = type
+    def __init__(self, px, py):
+        self.pic = [[pg.image.load("pic/da1.png"), pg.image.load("pic/da2.png"), pg.image.load("pic/da3.png"),
+                    pg.image.load("pic/da4.png"), pg.image.load("pic/da5.png"), pg.image.load("pic/da6.png"),],
+                    [pg.image.load("pic/fo1.png"),pg.image.load("pic/fo2.png"),pg.image.load("pic/fo3.png"),
+                    pg.image.load("pic/fo4.png"),pg.image.load("pic/fo5.png"),pg.image.load("pic/fo6.png")],
+                    [pg.image.load("pic/re1.png"),pg.image.load("pic/re2.png"),pg.image.load("pic/re3.png"),
+                     pg.image.load("pic/re4.png"),pg.image.load("pic/re5.png"),pg.image.load("pic/re6.png"),],
+                    [pg.image.load("pic/no1.png"),pg.image.load("pic/no2.png"),pg.image.load("pic/no3.png"),
+                     pg.image.load("pic/no4.png"),pg.image.load("pic/no5.png"),pg.image.load("pic/no6.png"),]]
+        self.type = random.randint(0,3)
+        self.pics = self.pic[self.type][random.randint(0,5)]
         self.posX = px
         self.posY = py
         self.moveSpeed = 0
-        self.g = 1  # 重力
+        self.g = 0.5  # 重力
         self.cheek = True          #判断是不是检测过
 
     def drop(self):
@@ -98,6 +103,7 @@ def main():
 
     ADD_RUBISH = pg.USEREVENT
     pg.time.set_timer(ADD_RUBISH,1500)  #自定义时间，每1.5秒添加一个垃圾
+
 
     while True:
         clock.tick(60)
